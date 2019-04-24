@@ -10,20 +10,24 @@ public class MainDemoApp {
 	public static void main(String[] args) {
 		// read the spring java config class
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(DemoConfig.class);
-		
+
 		// get the bean from spring container
 		AccountDAO accountDAO = context.getBean("accountDAO", AccountDAO.class);
-		
+
 		// get the membership bean from the spring container
 		MembershipDAO membershipDAO = context.getBean("membershipDAO", MembershipDAO.class);
-		
+
 		// call the business method
-		accountDAO.addAccount();
-		
+		// accountDAO.addAccount();
+
+		Account account = new Account();
+		// accountDAO.addAccount(account);
+		accountDAO.addAccount(account, true);
+		accountDAO.doWork();
 		// call the membership business method
-		//membershipDAO.addAccount();
+		// membershipDAO.addAccount();
 		membershipDAO.addAccountByMember();
-		
+		membershipDAO.goToSleep();
 		// close the context
 		context.close();
 
